@@ -1,0 +1,15 @@
+[package]
+name = "htmlpack"
+version = "0.1.0"
+authors = ["Ferruccio Barletta <ferruccio.barletta@gmail.com>"]
+description = "Pack HTML files"
+edition = "2018"
+
+[dependencies]
+clap = "2.32.0"
+html5ever = "0.22.5"
+quick-error = "1.2.2"
+string_cache = "0.7.3"
+mime_guess = "1.8.6"
+base64 = "0.10.1"
+wild = "2.0.1"
