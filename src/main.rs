@@ -21,10 +21,10 @@ fn main() {
         (version: crate_version!())
         (author: crate_authors!())
         (about: crate_description!())
-        (@arg INPUT: +required +multiple {file_exists} "HTML source file(s)")
+        (@arg INPUT: +required +multiple "HTML source file(s)")
         (@arg path: -p --path +takes_value +multiple {dir_exists}
             "Set search paths for linked files")
-        (@arg outdir: -o --("out-dir") +required +takes_value "Set output directory")
+        (@arg outdir: -o --("out-dir") +required +takes_value {dir_exists} "Set output directory")
         (@arg overwrite: -w --overwrite "Overwrite existing output files")
     )
     .setting(AppSettings::ColoredHelp)
@@ -40,14 +40,6 @@ fn main() {
     match process(arguments) {
         Err(e) => println!("{}", e),
         _ => {}
-    }
-}
-
-fn file_exists(filename: String) -> Result<(), String> {
-    if Path::new(&filename).is_file() {
-        Ok(())
-    } else {
-        Err(format!("The file \"{}\" does not exist", filename))
     }
 }
 
