@@ -62,9 +62,16 @@ impl Packer {
         let mut destination = self.outdir.clone();
         destination.push(input.iter().last().unwrap());
 
-        let mut dst_file = std::fs::File::create(destination)?;
-        dst_file.write_all(b"<!DOCTYPE html>\n")?;
-        serialize(&mut dst_file, &dom.document, Default::default())?;
+        if !self.overwrite && destination.exists() {
+            println!(
+                "output file already exists: {}, use -w to overwrite it",
+                destination.to_string_lossy()
+            );
+        } else {
+            let mut dst_file = std::fs::File::create(destination)?;
+            dst_file.write_all(b"<!DOCTYPE html>\n")?;
+            serialize(&mut dst_file, &dom.document, Default::default())?;
+        }
         Ok(())
     }
 
