@@ -1,6 +1,6 @@
 [package]
 name = "htmlpack"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Ferruccio Barletta <ferruccio.barletta@gmail.com>"]
 description = "Pack HTML files"
 edition = "2018"
